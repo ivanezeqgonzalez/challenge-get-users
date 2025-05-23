@@ -1,5 +1,6 @@
 import {createContext, useContext, useState} from 'react';
 import {IUser} from '../services/User.model';
+import {useUserStorage} from '../storage/user.storage';
 
 interface IUserConfigContext {
   favoritesAccounts: IUser['id'][];
@@ -15,7 +16,11 @@ const defaultValue: IUserConfigContext = {
 export const UserConfigContext = createContext(defaultValue);
 
 export const UserConfigProvider = ({children}) => {
-  const [providerValue, setProviderValue] = useState(defaultValue);
+  const [userStorage, setUserStorage] = useUserStorage();
+  const [providerValue, setProviderValue] = useState({
+    ...defaultValue,
+    favoritesAccounts: userStorage.favorites,
+  });
 
   const isFavorite = (id_username: number): boolean => {
     return providerValue.favoritesAccounts.includes(id_username);
@@ -35,6 +40,7 @@ export const UserConfigProvider = ({children}) => {
       ...prev,
       favoritesAccounts: newList,
     }));
+    setUserStorage(prev => ({...prev, favorites: newList}));
   };
 
   const values = {

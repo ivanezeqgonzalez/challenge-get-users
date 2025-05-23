@@ -24,8 +24,9 @@ class UserServiceMocked {
     return Promise.resolve(usersByTerm);
   }
   static getUser(username: string) {
-    console.log('mock getUser by username ', username);
-    return Promise.resolve(user_mock);
+    const userFiltered = users_mock.find(u => u.login === username);
+    console.log('mock getUser by username ', username, userFiltered);
+    return Promise.resolve(userFiltered);
   }
 }
 
