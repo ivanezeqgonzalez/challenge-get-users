@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {IUserDetail} from '../services/User.model';
+import {ICommonUser} from '../services/User.model';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../constants';
 
 interface IUser {
-  user: IUserDetail;
+  user: ICommonUser;
 }
 const User = (props: IUser) => {
   const {user} = props;

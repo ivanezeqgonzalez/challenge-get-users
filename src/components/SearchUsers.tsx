@@ -4,14 +4,13 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  Text,
 } from 'react-native';
 import {UserService} from '../services/Users';
 import Feather from 'react-native-vector-icons/Feather';
-import {IUserByTermResponse} from '../services/User.model';
+import {ICommonUser} from '../services/User.model';
 
 interface ISearchUsers {
-  setResults: (res: IUserByTermResponse) => void;
+  setResults: (res: ICommonUser[]) => void;
   resetSearch: () => void;
 }
 
@@ -24,7 +23,11 @@ const SearchUsers = (props: ISearchUsers) => {
     if (terms.trim().length === 0) {
       resetSearch();
     } else {
-      UserService.getUsersByTerm(terms).then(setResults);
+      UserService.getUsersByTerm(terms).then(results => {
+        let res = results.items.map(UserService.transformUserToCommonUser);
+        console.log(res);
+        setResults(res);
+      });
     }
   };
   return (

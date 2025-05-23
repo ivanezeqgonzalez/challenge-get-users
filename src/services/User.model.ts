@@ -84,3 +84,8 @@ export interface IUserByTerm {
   site_admin: boolean;
   score: number;
 }
+
+export interface ICommonUser {
+  login: string;
+  avatar_url: string;
+}

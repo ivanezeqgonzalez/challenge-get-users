@@ -1,25 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {UserService} from '../services/Users';
-import {IUserByTermResponse, IUserDetail} from '../services/User.model';
+import {ICommonUser} from '../services/User.model';
 import {ListUsers} from '../components/ListUsers';
 import SearchUsers from '../components/SearchUsers';
 
 const HomeScreen = () => {
-  const [users, setUsers] = useState<IUserDetail[]>([]);
+  const [users, setUsers] = useState<ICommonUser[]>([]);
 
   const resetSearch = () => {
     setUsers([]);
   };
 
-  const handleSetResultsSearch = (resutls: IUserByTermResponse) => {
+  const handleSetResultsSearch = (resutls: ICommonUser[]) => {
+    setUsers(() => resutls);
     console.log(resutls);
     // setUsers([]);
   };
 
   useEffect(() => {
     UserService.getUsers().then(usersData => setUsers(usersData));
-  });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

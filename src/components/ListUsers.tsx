@@ -1,10 +1,9 @@
 import React from 'react';
 import {Text, FlatList, StyleSheet} from 'react-native';
 import User from '../components/User';
-import {IUserDetail} from '../services/User.model';
-
+import {ICommonUser} from '../services/User.model';
 interface IListUsers {
-  users: IUserDetail[];
+  users: ICommonUser[];
 }
 export const ListUsers = (props: IListUsers) => {
   const {users} = props;

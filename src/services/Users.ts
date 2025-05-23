@@ -3,6 +3,7 @@ import {API_URL} from '../constants';
 import users_mock from '../mock/Users/users.json';
 import user_mock from '../mock/Users/user.json';
 import usersByTerm from '../mock/Users/usersByTerm.json';
+import {ICommonUser, IUserByTerm} from './User.model';
 
 const AxiosInstaceUser = axios.create({
   baseURL: API_URL,
@@ -16,21 +17,15 @@ const IS_MOCKED = true;
 class UserServiceMocked {
   static getUsers(): Promise<any> {
     console.log('mock getUsers');
-    return Promise.resolve(() => {
-      return users_mock;
-    });
+    return Promise.resolve(users_mock);
   }
   static getUsersByTerm(query: string) {
     console.log('mock getUsersByTerm ', query);
-    return Promise.resolve(() => {
-      return usersByTerm;
-    });
+    return Promise.resolve(usersByTerm);
   }
   static getUser(username: string) {
     console.log('mock getUser by username ', username);
-    return Promise.resolve(() => {
-      return user_mock;
-    });
+    return Promise.resolve(user_mock);
   }
 }
 
@@ -60,6 +55,10 @@ export class UserService {
       .then(res => res.data)
       .catch(console.error);
   }
+  static readonly transformUserToCommonUser = (
+    user: IUserByTerm,
+  ): ICommonUser => {
+    const {login, avatar_url} = user;
+    return {login, avatar_url};
+  };
 }
-
-
