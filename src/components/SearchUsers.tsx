@@ -21,6 +21,7 @@ const SearchUsers = (props: ISearchUsers) => {
   const handleSearch = () => {
     console.log('Buscar por ', terms);
     if (terms.trim().length === 0) {
+      console.log('trim? ',terms.trim().length);
       resetSearch();
     } else {
       UserService.getUsersByTerm(terms).then(results => {

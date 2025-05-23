@@ -9,17 +9,18 @@ const HomeScreen = () => {
   const [users, setUsers] = useState<ICommonUser[]>([]);
 
   const resetSearch = () => {
-    setUsers([]);
+    fetchUsers();
   };
 
   const handleSetResultsSearch = (resutls: ICommonUser[]) => {
-    setUsers(() => resutls);
-    console.log(resutls);
-    // setUsers([]);
+    setUsers(resutls);
   };
 
-  useEffect(() => {
+  const fetchUsers = () =>
     UserService.getUsers().then(usersData => setUsers(usersData));
+
+  useEffect(() => {
+    fetchUsers();
   }, []);
 
   return (
