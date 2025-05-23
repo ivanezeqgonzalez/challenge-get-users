@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native';
-import {IUserDetail} from '../services/Users';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {IUserDetail} from '../services/User.model';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../constants';
 
@@ -16,40 +16,40 @@ const User = (props: IUser) => {
 
   return (
     <View style={styles.container}>
-      <TouchableHighlight onPress={handleGetFullInfo}>
+      <TouchableOpacity onPress={handleGetFullInfo}>
         <View style={styles.cardUser}>
           <Image source={{uri: user.avatar_url}} style={styles.avatar} />
           <Text style={styles.username}>{user.login}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {width: '50%', backgroundColor: 'red', height: 210},
+  container: {
+    width: '50%',
+    height: 210,
+  },
   cardUser: {
-    borderBlockColor: 'green',
+    borderBlockColor: '#DAF7A6',
     borderWidth: 1,
-    borderRadius: 8,
-    paddingBottom: 5,
-    // paddingHorizontal: 10,
+    // paddingBottom: 5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    // elevation: 1
   },
   avatar: {
     width: '100%',
     height: 180,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
   username: {
-    backgroundColor: 'green',
+    backgroundColor: '#DAF7A6',
+    color: '#1f1f1f',
     fontSize: 19,
-    fontWeight: 'bold',
-    paddingTop: 5,
+    fontWeight: '500',
+    paddingLeft: 5,
   },
 });
 

@@ -1,23 +1,20 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
-import {Routes} from '../constants';
-import {IUserDetail, UserService} from '../services/Users';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {UserService} from '../services/Users';
+import {IUserByTermResponse, IUserDetail} from '../services/User.model';
 import {ListUsers} from '../components/ListUsers';
 import SearchUsers from '../components/SearchUsers';
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
   const [users, setUsers] = useState<IUserDetail[]>([]);
-  const handlePressClickMe = () => {
-    navigation.navigate(Routes.USER_DETAILS, {username: users[0].login});
+
+  const resetSearch = () => {
+    setUsers([]);
+  };
+
+  const handleSetResultsSearch = (resutls: IUserByTermResponse) => {
+    console.log(resutls);
+    // setUsers([]);
   };
 
   useEffect(() => {
@@ -26,7 +23,10 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchUsers />
+      <SearchUsers
+        resetSearch={resetSearch}
+        setResults={handleSetResultsSearch}
+      />
       <ScrollView style={styles.containerListUsers}>
         <ListUsers users={users} />
       </ScrollView>
@@ -42,15 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     width: '100%',
     gap: 20,
+    columnGap: 20,
     paddingBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 18,
   },
   containerListUsers: {
     width: '90%',

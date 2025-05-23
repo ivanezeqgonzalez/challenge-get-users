@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from 'react';
-import {IUser} from '../services/Users';
+import { IUser } from '../services/User.model';
 
 interface IUserConfigContext {
   favoritesAccounts: IUser['id'][];

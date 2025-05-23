@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, FlatList, StyleSheet} from 'react-native';
 import User from '../components/User';
-import {IUserDetail} from '../services/Users';
+import {IUserDetail} from '../services/User.model';
 
 interface IListUsers {
   users: IUserDetail[];
@@ -12,6 +12,7 @@ export const ListUsers = (props: IListUsers) => {
   if (users.length === 0) {
     return <Text>No hay usuarios para mostrar</Text>;
   }
+
   return (
     <FlatList
       // style={styles.list}
