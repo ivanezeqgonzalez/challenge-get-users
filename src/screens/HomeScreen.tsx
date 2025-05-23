@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {UserService} from '../services/Users';
 import {ICommonUser} from '../services/User.model';
 import {ListUsers} from '../components/ListUsers';
@@ -29,9 +29,7 @@ const HomeScreen = () => {
         resetSearch={resetSearch}
         setResults={handleSetResultsSearch}
       />
-      <ScrollView style={styles.containerListUsers}>
         <ListUsers users={users} />
-      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -46,9 +44,6 @@ const styles = StyleSheet.create({
     gap: 20,
     columnGap: 20,
     paddingBottom: 20,
-  },
-  containerListUsers: {
-    width: '90%',
   },
 });
 

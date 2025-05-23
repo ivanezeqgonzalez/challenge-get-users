@@ -14,7 +14,6 @@ export const ListUsers = (props: IListUsers) => {
 
   return (
     <FlatList
-      // style={styles.list}
       contentContainerStyle={styles.list}
       numColumns={2}
       data={users}
@@ -27,7 +26,7 @@ export const ListUsers = (props: IListUsers) => {
 
 const styles = StyleSheet.create({
   list: {
-    width: '100%',
+    width: '95%',
     paddingHorizontal: 15,
     gap: 20,
     backgroundColor: 'orange',
