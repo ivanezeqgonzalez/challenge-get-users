@@ -39,7 +39,7 @@ export class UserService {
       .catch(console.error);
   }
   static getUsersByTerm(terms: string) {
-    const query = `q=user:${encodeURIComponent(terms)}`;
+    const query = `user:${encodeURIComponent(terms)}`;
     if (IS_MOCKED) {
       return UserServiceMocked.getUsersByTerm(query);
     }

@@ -21,10 +21,10 @@ const SearchUsers = (props: ISearchUsers) => {
   const handleSearch = () => {
     console.log('Buscar por ', terms);
     if (terms.trim().length === 0) {
-      console.log('trim? ',terms.trim().length);
       resetSearch();
     } else {
       UserService.getUsersByTerm(terms).then(results => {
+        console.log(results)
         let res = results.items.map(UserService.transformUserToCommonUser);
         console.log(res);
         setResults(res);
