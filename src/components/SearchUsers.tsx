@@ -24,9 +24,7 @@ const SearchUsers = (props: ISearchUsers) => {
       resetSearch();
     } else {
       UserService.getUsersByTerm(terms).then(results => {
-        console.log(results)
         let res = results.items.map(UserService.transformUserToCommonUser);
-        console.log(res);
         setResults(res);
       });
     }
