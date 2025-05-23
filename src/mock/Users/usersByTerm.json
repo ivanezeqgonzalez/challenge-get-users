@@ -1,0 +1,28 @@
+{
+  "total_count": 1,
+  "incomplete_results": false,
+  "items": [
+    {
+      "login": "m",
+      "id": 48685,
+      "node_id": "MDQ6VXNlcjQ4Njg1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48685?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/m",
+      "html_url": "https://github.com/m",
+      "followers_url": "https://api.github.com/users/m/followers",
+      "following_url": "https://api.github.com/users/m/following{/other_user}",
+      "gists_url": "https://api.github.com/users/m/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/m/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/m/subscriptions",
+      "organizations_url": "https://api.github.com/users/m/orgs",
+      "repos_url": "https://api.github.com/users/m/repos",
+      "events_url": "https://api.github.com/users/m/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/m/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false,
+      "score": 1.0
+    }
+  ]
+}

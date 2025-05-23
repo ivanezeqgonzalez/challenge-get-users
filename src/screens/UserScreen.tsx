@@ -5,7 +5,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import {IUserDetail, UserService} from '../services/Users';
+import {UserService} from '../services/Users';
+import { IUserDetail } from '../services/User.model';
 import UserDetail from '../components/UserDetail';
 
 const UserScreen = ({route}) => {

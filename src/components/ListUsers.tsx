@@ -1,10 +1,9 @@
 import React from 'react';
 import {Text, FlatList, StyleSheet} from 'react-native';
 import User from '../components/User';
-import {IUserDetail} from '../services/Users';
-
+import {ICommonUser} from '../services/User.model';
 interface IListUsers {
-  users: IUserDetail[];
+  users: ICommonUser[];
 }
 export const ListUsers = (props: IListUsers) => {
   const {users} = props;
@@ -12,9 +11,9 @@ export const ListUsers = (props: IListUsers) => {
   if (users.length === 0) {
     return <Text>No hay usuarios para mostrar</Text>;
   }
+
   return (
     <FlatList
-      // style={styles.list}
       contentContainerStyle={styles.list}
       numColumns={2}
       data={users}
@@ -27,7 +26,7 @@ export const ListUsers = (props: IListUsers) => {
 
 const styles = StyleSheet.create({
   list: {
-    width: '100%',
+    width: '95%',
     paddingHorizontal: 15,
     gap: 20,
     backgroundColor: 'orange',

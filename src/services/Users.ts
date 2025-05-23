@@ -2,6 +2,8 @@ import axios from 'axios';
 import {API_URL} from '../constants';
 import users_mock from '../mock/Users/users.json';
 import user_mock from '../mock/Users/user.json';
+import usersByTerm from '../mock/Users/usersByTerm.json';
+import {ICommonUser, IUserByTerm} from './User.model';
 
 const AxiosInstaceUser = axios.create({
   baseURL: API_URL,
@@ -15,21 +17,16 @@ const IS_MOCKED = true;
 class UserServiceMocked {
   static getUsers(): Promise<any> {
     console.log('mock getUsers');
-    return Promise.resolve(() => {
-      return users_mock;
-    });
+    return Promise.resolve(users_mock);
   }
   static getUsersByTerm(query: string) {
     console.log('mock getUsersByTerm ', query);
-    return Promise.resolve(() => {
-      return users_mock;
-    });
+    return Promise.resolve(usersByTerm);
   }
   static getUser(username: string) {
-    console.log('mock getUser by username ', username);
-    return Promise.resolve(() => {
-      return user_mock;
-    });
+    const userFiltered = users_mock.find(u => u.login === username);
+    console.log('mock getUser by username ', username, userFiltered);
+    return Promise.resolve(userFiltered);
   }
 }
 
@@ -43,7 +40,7 @@ export class UserService {
       .catch(console.error);
   }
   static getUsersByTerm(terms: string) {
-    const query = `q=user:${encodeURIComponent(terms)}`;
+    const query = `user:${encodeURIComponent(terms)}`;
     if (IS_MOCKED) {
       return UserServiceMocked.getUsersByTerm(query);
     }
@@ -59,62 +56,10 @@ export class UserService {
       .then(res => res.data)
       .catch(console.error);
   }
-}
-
-export interface IUser {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  user_view_type: string;
-  site_admin: boolean;
-}
-
-export interface IUserDetail {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  user_view_type: string;
-  site_admin: boolean;
-  name: string;
-  company: string;
-  blog: string;
-  location: string;
-  email: any;
-  hireable: any;
-  bio: any;
-  twitter_username: string;
-  public_repos: number;
-  public_gists: number;
-  followers: number;
-  following: number;
-  created_at: string;
-  updated_at: string;
+  static readonly transformUserToCommonUser = (
+    user: IUserByTerm,
+  ): ICommonUser => {
+    const {login, avatar_url} = user;
+    return {login, avatar_url};
+  };
 }
