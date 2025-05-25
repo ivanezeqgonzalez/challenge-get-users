@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {API_URL} from '../constants';
 import users_mock from '../mock/Users/users.json';
-import user_mock from '../mock/Users/user.json';
 import usersByTerm from '../mock/Users/usersByTerm.json';
 import {ICommonUser, IUserByTerm} from './User.model';
 
@@ -17,7 +16,11 @@ const IS_MOCKED = true;
 class UserServiceMocked {
   static getUsers(): Promise<any> {
     console.log('mock getUsers');
-    return Promise.resolve(users_mock);
+    return new Promise(res => {
+      return setTimeout(() => {
+        res(users_mock);
+      }, 1500);
+    });
   }
   static getUsersByTerm(query: string) {
     console.log('mock getUsersByTerm ', query);
