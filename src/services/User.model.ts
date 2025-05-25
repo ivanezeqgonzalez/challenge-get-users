@@ -88,4 +88,5 @@ export interface IUserByTerm {
 export interface ICommonUser {
   login: string;
   avatar_url: string;
+  id: number;
 }

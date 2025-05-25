@@ -62,7 +62,7 @@ export class UserService {
   static readonly transformUserToCommonUser = (
     user: IUserByTerm,
   ): ICommonUser => {
-    const {login, avatar_url} = user;
-    return {login, avatar_url};
+    const {login, avatar_url, id} = user;
+    return {login, avatar_url, id};
   };
 }
