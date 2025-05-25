@@ -17,7 +17,7 @@ export type SettingResults = {
   filters: FilterBy;
   order: Order;
 };
-interface ISortByUserName {
+interface IFiltersAndOrder {
   toggleOrder: Function;
   setFilters: (newSettingsResults: SettingResults) => void;
   settingsResults: SettingResults;
@@ -40,7 +40,7 @@ const ToggleOrder = (props: IToggleOrder) => {
   );
 };
 
-export const SortByUsername = (props: ISortByUserName) => {
+export const FiltersAndOrder = (props: IFiltersAndOrder) => {
   const {toggleOrder, settingsResults, setFilters} = props;
   const [open, setOpen] = useState(false);
   const [temporalFilter, setTemporalFilter] =
@@ -71,8 +71,6 @@ export const SortByUsername = (props: ISortByUserName) => {
   };
 
   return (
-    // TODO: renombrar este archivo a uno generico de tipo filtros o config de resultados
-    // TODO: agregar seccion Filtrar por favorito y otra para ordernar por asc desc. Tambien poner titulo de Configuración de resultados de búsqueda
     <View style={styles.container}>
       <Modal visible={open} animationType="slide">
         <View style={styles.modalContainer}>
@@ -162,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SortByUsername;
+export default FiltersAndOrder;

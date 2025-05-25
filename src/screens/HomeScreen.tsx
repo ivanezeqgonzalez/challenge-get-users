@@ -5,7 +5,7 @@ import {ICommonUser} from '../services/User.model';
 import {ListUsers} from '../components/ListUsers';
 import SearchUsers from '../components/SearchUsers';
 import Loading from '../components/Loading';
-import SortByUsername, {SettingResults} from '../components/SortByUsername';
+import FiltersAndOrder, {SettingResults} from '../components/FiltersAndOrder';
 import {useUserConfigContext} from '../context/userConfigs.context';
 
 export type Order = 'ASC' | 'DESC';
@@ -49,7 +49,7 @@ const HomeScreen = () => {
     }
     return copyUsers;
   };
-  
+
   const resetSearch = () => {
     fetchUsers();
   };
@@ -92,7 +92,7 @@ const HomeScreen = () => {
         <Loading />
       ) : (
         <>
-          <SortByUsername
+          <FiltersAndOrder
             toggleOrder={toggleOrder}
             setFilters={handleSetFilters}
             settingsResults={{filters, order}}
