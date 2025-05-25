@@ -28,10 +28,8 @@ const UserScreen = ({route}) => {
       </View>
     );
   }
-
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text style={styles.title}>Challenge of users!</Text> */}
       {!user ? <Text style={styles.title}>Usuario no encontrado</Text> : <UserDetail user={user} />}
     </SafeAreaView>
   );
