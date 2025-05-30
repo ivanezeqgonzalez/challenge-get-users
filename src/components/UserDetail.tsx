@@ -13,8 +13,6 @@ const UserDetail = (props: IUserDetailProps) => {
   const {updateFavorite, isFavorite} = useUserConfigContext();
 
   const toggleFavorite = () => {
-    // TODO: guardarlo en AsyncStorage
-    // setIsFavorite(prev => !prev);
     updateFavorite(user.id);
   };
 
